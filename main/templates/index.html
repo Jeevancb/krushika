@@ -1,0 +1,62 @@
+{% extends 'base.html'%}
+
+{% block head %}
+
+<div class="container mt-5">
+  {% if current_user.is_authenticated %}
+<div class="alert alert-success" role="alert">
+    Username: {{ current_user.username }}, Logged in Successfully
+    <br><br>
+    <h6>Quicklinks:</h6>
+    <a href="soiltest"><button type="button" class="btn btn-primary">🌱</button></a>
+    <a href="expenditure"><button type="button" class="btn btn-primary">🪙</button></a>
+    <a href="phases"><button type="button" class="btn btn-primary">⏳</button></a>
+</div>
+{% endif %}
+    <h4>Welcome to 🌾KRUSHIKA</h4>
+    <body>
+        Krushika is a web application that mainly focuses on guiding farmers with their activities. This application is created using the python platform. It is created keeping in mind, the increasing difficulties or hurdles faced by our farmers and aims to resolve their issues. Our country which mainly depends on agriculture, still requires a lot of assistance and improvements which was the main inspiration for developing this application
+    </body>
+</div>
+
+<div class="container mt-5">
+<div class="row">
+    <div class="col-md-6">
+      <br>
+    <!-- Card 1 -->
+    <div class="card" style="width: 22rem;">
+        <img class="card-img-top" src="/static/images/soiltest_card_thumbnail.png" alt="Soil test card image">
+        <div class="card-body">
+          <h5 class="card-title">Soil Test Analysis</h5>
+          <p class="card-text">
+            Drop the inputs from the soil test report conducted in the laboratory and get the best fertilizer suitable for the deficiency of the particular mineral
+          </p>
+          <a href="/soiltest" class="btn btn-primary">Visit</a>
+        </div>
+      </div>
+      </div>
+      <div class="col-md-6">
+        <br>
+      <!-- Card 2 -->
+      <div class="card" style="width: 22rem;">
+        <img class="card-img-top" src="/static/images/expenditure_card_thumbnail.png" alt="Expenditure card image">
+        <div class="card-body">
+          <h5 class="card-title">Expenditure Analysis</h5>
+          <p class="card-text">
+            Calculate your annual budget planning for a crop and analyze the profits and loss with the previous years
+          </p>
+          <a href="/expenditure" class="btn btn-primary">Visit</a>
+        </div>
+      </div>
+      <br>
+    </div>
+</div>
+
+</div>
+
+{% endblock %}
+
+
+{% block body %}
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'base.html'%}
+
+{% block head %}
+
+<br>
+<h3 class="text-center">Soil Test Analyzer</h3>
+{% endblock %}
+
+
+{% block body %}
+
+{% if ph_value %}
+
+{% else %}
+<div class="container mt-5">
+    <div class="alert alert-info" role="alert">
+        Values except ph must be entered in ppm
+    </div>
+<form class="row" method="POST" action="/soiltest">
+    {{ form.hidden_tag() }}
+
+    <div class="container mt-1">
+    {{ form.ph_value.label(class="form-label") }}
+    <span class="badge badge-primary">0-14</span>
+    {{ form.ph_value(class="form-control") }}
+</div>
+    
+    
+    <div class="col-md-6">
+        <br><br>
+        <h5 class="text-center">Macro Nutrients</h5>
+        
+        <span class="badge badge-info">Mg</span>
+        {{ form.magnesium_value.label(class="form-label") }}
+        {{ form.magnesium_value(class="form-control") }}
+
+        <span class="badge badge-info">P</span>
+        {{ form.phosphorus_value.label(class="form-label") }}
+        {{ form.phosphorus_value(class="form-control") }}
+
+        <span class="badge badge-info">K</span>
+        {{ form.potassium_value.label(class="form-label") }}
+        {{ form.potassium_value(class="form-control") }}
+        
+        <span class="badge badge-info">Ca</span>
+        {{ form.calcium_value.label(class="form-label") }}
+        {{ form.calcium_value(class="form-control") }}
+    </div>
+
+    <div class="col-md-6">
+        <br><br>
+        <h5 class="text-center">Micro Nutrients</h5>
+        
+        <span class="badge badge-info">B</span>
+        {{ form.boron_value.label(class="form-label") }}
+        {{ form.boron_value(class="form-control") }}
+
+        <span class="badge badge-info">Fe</span>
+        {{ form.iron_value.label(class="form-label") }}
+        {{ form.iron_value(class="form-control") }}
+
+        <span class="badge badge-info">Zn</span>
+        {{ form.zinc_value.label(class="form-label") }}
+        {{ form.zinc_value(class="form-control") }}
+
+        <span class="badge badge-info">Mn</span>
+        {{ form.manganese_value.label(class="form-label") }}
+        {{ form.manganese_value(class="form-control") }}
+    </div>
+
+    <div class="col-md-6">
+    <br>
+    {{ form.soil_type.label(class="form-label") }}
+    {{ form.soil_type(class="form-control") }}
+    </div>
+
+    <div class="col-md-6">
+    <br><br>
+    {{ form.submitbutton(class="btn btn-primary") }}
+    <br>
+    <br>
+    <!--<input type="submit" class="btn btn-primary" value="Verify & Submit"> -->
+</div>
+</div>
+</form>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'base.html'%}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+{% if current_user.is_authenticated %}
+<br>
+<h3 class="text-center">Expenditure Analysis</h3>
+{% if seed_cost_value %}
+
+{% else %}
+<div class="container mt-5">
+<form class="row" method="POST" action="/expenditure">
+    {{ form.hidden_tag() }}
+    
+    <div class="col-md-6">
+        <br>
+        
+        {{ form.year_field.label(class="form-label") }}
+        {{ form.year_field(class="form-control") }}
+        <br>
+        {{ form.seed_cost.label(class="form-label") }}
+        {{ form.seed_cost(class="form-control") }}
+        <br>
+        {{ form.fertilizer_cost.label(class="form-label") }}
+        {{ form.fertilizer_cost(class="form-control") }}
+        <br>
+        {{ form.irrigation_cost.label(class="form-label") }}
+        {{ form.irrigation_cost(class="form-control") }}
+        </div>
+
+    <div class="col-md-6">
+        <br>
+        {{ form.labour_cost.label(class="form-label") }}
+        {{ form.labour_cost(class="form-control") }}
+        <br>
+        {{ form.transportation_cost.label(class="form-label") }}
+        {{ form.transportation_cost(class="form-control") }}
+        <br>
+        {{ form.other_cost.label(class="form-label") }}
+        {{ form.other_cost(class="form-control") }}
+    </div>
+
+    <div class="col-md-6">
+        <br>
+        <br>
+        <br>
+        {{ form.yield_amount.label(class="form-label") }}
+        {{ form.yield_amount(class="form-control") }}
+    </div>
+    <div class="col-md-6">
+        <br><br><br>
+        {{ form.crop_price.label(class="form-label") }}
+        {{ form.crop_price(class="form-control") }}
+    </div>
+    <div class="col-md-6">
+    <br><br>
+    {{ form.submitbutton(class="btn btn-primary") }}
+ 
+    <a href="/expenditure/dashboard"><button type="button" class="btn btn-success">View Result</button></a>
+    <a href="/expenditure/delete_records"><button type="button" class="btn btn-danger">Delete Records</button></a>
+
+    <br><br>
+    <!--<input type="submit" class="btn btn-primary" value="Verify & Submit"> -->
+</div>
+</div>
+</form>
+{% endif %}
+
+{% else %}
+<div class="container mt-5">
+    <h5>Log in to view this page</h5>
+    <br>
+    <form action="/login">
+        <input type="submit" class="btn btn-success" value="Login">
+    </form>
+    
+</div>
+{% endif %}
+
+{% endblock %}

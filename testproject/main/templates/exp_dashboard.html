@@ -1,0 +1,228 @@
+{% extends 'base.html'%}
+
+{% block head %}
+
+{% endblock %}
+
+
+{% block body %}
+
+<div class="container mt-3">
+    <h5>Financial:</h5>
+    <div class="card" style="width: 22rem;">
+      <div class="card-body">
+        <h5 class="card-title">Avg. Expenses Chart</h5>
+        <canvas id="ExpensesChart" width="300" height="300"></canvas>
+          <script>
+
+            Chart.defaults.global.responsive = true;
+            Chart.defaults.global.animation.duration = 3000;
+    
+            // define the chart data
+            var chartData = {
+            labels : [{% for item in ae_labels %}
+            "{{item}}",
+            {% endfor %}],
+            datasets : [{
+            label: 'Revenue',
+            fill: true,
+            lineTension: 0.1,
+            backgroundColor: ["rgb(75, 192, 192)","rgb(255, 159, 64)","rgb(255, 205, 86)",
+            "rgb(54, 162, 235)","rgb(255, 100, 133)","rgb(154, 103, 255)"],
+            borderColor: "rgb(255, 255, 255)",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "rgba(75,192,192,1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data : [{% for item in ae_values %}
+            {{item}},
+            {% endfor %}],
+            spanGaps: false
+            }]
+            }
+            
+            // get chart canvas
+            var ctx = document.getElementById("ExpensesChart").getContext("2d");
+            
+            // create the chart using the chart canvas
+            var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: chartData,
+            });
+          </script>
+        </div>
+    </div>
+    <br>
+    <div class="card" style="width: 22rem;">
+        <div class="card-body">
+          <h5 class="card-title">Revenue</h5>
+          <canvas id="revenueChart" width="300" height="300"></canvas>
+            <script>
+
+              Chart.defaults.global.responsive = false;
+              
+      
+              // define the chart data
+              var chartData = {
+              labels : [{% for item in r_labels %}
+              "{{item}}",
+              {% endfor %}],
+              datasets : [{
+              label: 'Revenue',
+              fill: true,
+              lineTension: 0.1,
+              backgroundColor: "rgba(75,192,192,0.4)",
+              borderColor: "rgba(75,192,192,1)",
+              borderCapStyle: 'butt',
+              borderDash: [],
+              borderDashOffset: 0.0,
+              borderJoinStyle: 'miter',
+              pointBorderColor: "rgba(75,192,192,1)",
+              pointBackgroundColor: "#fff",
+              pointBorderWidth: 1,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: "rgba(75,192,192,1)",
+              pointHoverBorderColor: "rgba(220,220,220,1)",
+              pointHoverBorderWidth: 2,
+              pointRadius: 1,
+              pointHitRadius: 10,
+              data : [{% for item in r_values %}
+              {{item}},
+              {% endfor %}],
+              spanGaps: false
+              }]
+              }
+              
+              // get chart canvas
+              var ctx = document.getElementById("revenueChart").getContext("2d");
+              
+              // create the chart using the chart canvas
+              var myChart = new Chart(ctx, {
+              type: 'line',
+              data: chartData,
+              });
+            </script>
+         </div>
+      </div>
+      <br>
+      <div class="card" style="width: 22rem;">
+        <div class="card-body">
+          <h5 class="card-title">Costs vs Profits</h5>
+          <canvas id="profitChart" width="300" height="300"></canvas>
+            <script>
+
+              Chart.defaults.global.responsive = false;
+              
+      
+              // define the chart data
+              var chartData = {
+              labels : [{% for item in r_labels %}
+              "{{item}}",
+              {% endfor %}],
+              datasets : [{
+              label: 'Costs',
+              fill: true,
+              lineTension: 0.1,
+              backgroundColor: "rgba(75,192,192,0)",  
+              borderColor: "rgba(226,160,16,1)",
+              borderCapStyle: 'butt',
+              borderDash: [],
+              borderDashOffset: 0.0,
+              borderJoinStyle: 'miter',
+              pointBorderColor: "rgba(226,160,16,1)",
+              pointBackgroundColor: "#fff",
+              pointBorderWidth: 5,
+              pointHoverRadius: 10,
+              pointHoverBackgroundColor: "rgba(226,160,16,1)",
+              pointHoverBorderColor: "rgba(220,220,220,1)",
+              pointHoverBorderWidth: 2,
+              pointRadius: 1,
+              pointHitRadius: 10,
+              data : [{% for item in cp_values %}
+              {{item}},
+              {% endfor %}],
+              spanGaps: false
+              },
+              {
+                label: 'Profits',
+                fill: true,
+                lineTension: 0.1,
+                backgroundColor: "rgba(75,192,192,0)",
+                borderColor: "rgba(75,192,192,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(75,192,192,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 5,
+                pointHoverRadius: 10,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data : [{% for item in r_values %}
+                {{item}},
+                {% endfor %}],
+                spanGaps: false
+                }]
+              }
+              
+              // get chart canvas
+              var ctx = document.getElementById("profitChart").getContext("2d");
+              
+              // create the chart using the chart canvas
+              var myChart = new Chart(ctx, {
+              type: 'line',
+              data: chartData,
+              });
+            </script>
+         </div>
+      </div>
+      <br>
+    <div class="card" style="width: 22rem;">
+        <div class="card-body">
+          <h5 class="card-title">Predicted Profits</h5>
+           
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Year</th>
+                    <th scope="col">Profits</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for i in range(0, 5) %}
+                  <tr>
+              <td>{{ pdct_profit_labels[i] }}
+                </td>
+                <td>
+                ₹{{ pdct_profit_values[i] }}
+              </td>
+            </tr>
+              {% endfor %}
+
+                </tbody>
+              </table>
+         </div>
+      </div>
+      <br>
+      
+
+</div>
+
+
+    
+  
+    
+{% endblock %}

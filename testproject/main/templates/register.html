@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+
+{% block head %}
+
+{% endblock %}
+{% block body %}
+<div class="container mt-5">
+    <h5>Register</h5>
+    <br>
+<form method="POST" action="/register">
+{{ form.hidden_tag() }}
+{{ form.username(class="form-control") }}
+<br>
+{{ form.password(class="form-control") }}
+<br>
+{{ form.submit(class="btn btn-success") }}
+</form>
+<br>
+    <a href="/login"><p>Already have an account?</p></a>
+</div>
+
+{% endblock %}
